@@ -12,11 +12,15 @@
             <div class="row">
                 <div class="col-8">
                     <h2>News</h2>
-                    {% for news in news_list %}
-                    <h3><a href='{{ news.url }}'>{{ news.title }}</a></h3>
-                    <p>{{ news.published }}</p>
-                    <hr />
-                    {% endfor %}
+                    {% if news_list == False %}
+                        News server is not available
+                    {% else %}    
+                        {% for news in news_list %}
+                        <h3><a href='{{ news.url }}'>{{ news.title }}</a></h3>
+                        <p>{{ news.published.strftime('%d.%m.%Y') }}</p>
+                        <hr />
+                        {% endfor %}
+                    {% endif %}
                 </div>
                 <div class="col-4">
                     <h2>Weather in {{ weather_city }}</h2>
